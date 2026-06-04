@@ -800,7 +800,7 @@
 
   <header class="page-header">
     <h1>DUA Edu · SQL Fresher Assessment</h1>
-    <p><span id="questionCount"></span> questions &nbsp;·&nbsp; <span class="badge">Auto-scored</span> &nbsp;·&nbsp; <span class="badge">Save to Google Sheet</span></p>
+    <p><span id="questionCount"></span> questions &nbsp;·&nbsp; <span class="badge">Auto-scored</span></p>
   </header>
 
   <section class="student-info" aria-label="Student information">
@@ -1692,7 +1692,7 @@ FROM orders;</code></pre>
         body: JSON.stringify(resultData)
       });
 
-      statusEl.innerHTML = "✅ Đã gửi kết quả để lưu vào <strong>Google Sheet</strong>.";
+      statusEl.innerHTML = "✅ Cảm ơn bạn đã tham gia Test của Dứa.";
     } catch (error) {
       statusEl.textContent = "⚠️ Không lưu được vào Google Sheet. Vui lòng kiểm tra Web App URL hoặc quyền Deploy.";
       console.error("Google Sheet save error:", error);
