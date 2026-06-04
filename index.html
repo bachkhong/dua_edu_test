@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analyst Fresher Assessment</title>
+<style>
+  :root {
+    --bg: #F7FBF5;
+    --surface: #FFFFFF;
+    --surface-2: #EFF7EE;
+    --border: #DDEBDD;
+    --border-hover: #009846;
+    --accent: #009846;
+    --accent-light: #E8F6EC;
+    --accent-dark: #006B35;
+    --text: #102015;
+    --text-2: #52645A;
+    --text-3: #8AA192;
+    --success: #007A3D;
+    --success-bg: #DFF5E5;
+    --blue: #2563EB;
+    --orange: #F97316;
+    --green: #22C55E;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 32px 20px 64px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .page-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .page-header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 22px;
+  }
+
+  .page-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .page-header p {
+    color: var(--text-2);
+    font-size: 14px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #CDEBD5;
+  }
+
+  /* Student info */
+  .student-info {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+
+  .student-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  .field input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+
+  .field input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0,152,70,.12);
+  }
+
+  .field input::placeholder { color: var(--text-3); }
+
+  .start-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, transform .1s, box-shadow .15s;
+    outline: none;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 1px 3px rgba(0,152,70,.35);
+  }
+
+  .btn-primary:hover { background: var(--accent-dark); box-shadow: 0 2px 8px rgba(0,152,70,.4); }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-primary:disabled { background: #D4CFC9; box-shadow: none; cursor: not-allowed; }
+
+  .btn-ghost {
+    background: var(--surface-2);
+    color: var(--text-2);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover { background: var(--border); color: var(--text); }
+  .btn-ghost:disabled { opacity: .4; cursor: not-allowed; }
+
+  /* Progress */
+  .progress-area {
+    margin-bottom: 16px;
+  }
+
+  .progress-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  .progress-meta strong { color: var(--text); font-weight: 600; }
+
+  .progress-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width .25s ease;
+  }
+
+  /* Question card */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 0;
+    box-shadow: var(--shadow);
+  }
+
+  .card[hidden] { display: none; }
+
+  .question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .q-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+    border: 1px solid #CDEBD5;
+  }
+
+  .q-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .points {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--success-bg);
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-left: 8px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  /* Data table */
+  .data-table {
+    width: 100%;
+    max-width: 420px;
+    border-collapse: collapse;
+    margin: 0 0 18px;
+    font-size: 13px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .data-table th, .data-table td {
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table th:first-child, .data-table td:first-child { text-align: left; }
+
+  .data-table th {
+    background: var(--surface-2);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-2);
+  }
+
+  .data-table td { color: var(--text); }
+
+  /* Code block */
+  pre {
+    background: #1A1816;
+    color: #E8E5E0;
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    overflow-x: auto;
+    margin: 0 0 18px;
+    border: 1px solid #2D2926;
+    line-height: 1.6;
+  }
+
+  /* Options — text answers */
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  .option-label:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .option-label input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  /* Options — visual chart answers */
+  .options-visual {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .answer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 8px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    text-align: center;
+  }
+
+  .answer-card:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .answer-card input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  .option-visual {
+    width: 80px;
+    height: 56px;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .option-visual svg { width: 100%; height: 100%; }
+
+  .option-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  /* Bar chart */
+  .bar-chart {
+    background: #1A1816;
+    color: #E8E5E0;
+    border-radius: var(--radius);
+    padding: 18px 20px 16px;
+    margin-bottom: 18px;
+    border: 1px solid #2D2926;
+  }
+
+  .bar-chart h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #F4F3F0;
+  }
+
+  .bar-chart > p {
+    font-size: 12px;
+    color: #9B9390;
+    margin-bottom: 14px;
+  }
+
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    height: 160px;
+    border-left: 1px solid #3D3A36;
+    border-bottom: 1px solid #3D3A36;
+    padding: 0 12px;
+  }
+
+  .bar-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .bar {
+    width: 100%;
+    max-width: 60px;
+    background: var(--accent);
+    border-radius: 6px 6px 0 0;
+    transition: background .2s, transform .2s;
+  }
+
+  .bar-item:hover .bar {
+    background: #17B65C;
+    transform: translateY(-3px);
+  }
+
+  .bar-item::before {
+    content: attr(data-value);
+    position: absolute;
+    bottom: calc(var(--bar-height) + 34px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    padding: 3px 7px;
+    border-radius: 5px;
+    background: #F4F3F0;
+    color: #1A1816;
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+    white-space: nowrap;
+  }
+
+  .bar-item:hover::before { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .bar-label {
+    font-size: 11px;
+    color: #9B9390;
+  }
+
+  /* Donut / chart panel */
+  .chart-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 18px;
+  }
+
+  .chart-panel h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .chart-panel > p {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-bottom: 12px;
+  }
+
+  .donut-wrap { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+  .donut {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: conic-gradient(#2563EB 0 45%, #F97316 45% 75%, #22C55E 75% 100%);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .donut::after {
+    content: "";
+    position: absolute;
+    inset: 32px;
+    border-radius: 50%;
+    background: white;
+  }
+
+  .legend { display: grid; gap: 8px; font-size: 13px; color: var(--text-2); }
+
+  .legend span { display: flex; align-items: center; }
+
+  .legend span::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 8px;
+    background: var(--color);
+    flex-shrink: 0;
+  }
+
+  /* SVG chart */
+  .svg-chart { width: 100%; height: 180px; }
+
+  /* Stacked bar */
+  .stacked-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+  .stacked-label { width: 28px; font-size: 12px; font-weight: 600; color: var(--text-2); }
+  .stacked-bar { display: flex; height: 22px; flex: 1; border-radius: 6px; overflow: hidden; background: var(--border); }
+  .stacked-bar span { display: block; transition: filter .2s; }
+  .stacked-bar:hover span { filter: brightness(1.1); }
+  .stacked-row strong { font-size: 12px; color: var(--text); min-width: 28px; text-align: right; }
+  .seg-mobile { background: var(--blue); }
+  .seg-desktop { background: var(--orange); }
+
+  /* Horizontal bar */
+  .hbar-row { display: grid; grid-template-columns: 72px 1fr 36px; align-items: center; gap: 10px; margin: 8px 0; font-size: 13px; color: var(--text-2); }
+  .hbar { height: 18px; border-radius: 999px; background: var(--surface-2); overflow: hidden; border: 1px solid var(--border); }
+  .hbar span { display: block; height: 100%; border-radius: 999px; background: var(--accent); transition: background .2s; }
+  .hbar-row:hover .hbar span { background: var(--accent-dark); }
+  .hbar-row strong { font-size: 12px; font-weight: 700; text-align: right; color: var(--text); }
+
+  /* Heatmap */
+  .heatmap { display: grid; grid-template-columns: 60px repeat(4, 1fr); gap: 5px; font-size: 12px; }
+  .heatmap div { padding: 7px 4px; border-radius: 6px; text-align: center; background: var(--surface-2); color: var(--text-2); }
+  .heatmap .head { font-weight: 700; background: var(--border); color: var(--text-2); font-size: 11px; }
+  .heatmap .hot { background: var(--accent); color: white; font-weight: 700; }
+  .heatmap .warm { background: #CDEBD5; color: var(--accent-dark); font-weight: 600; }
+  .heatmap .mild { background: #FDF0EA; color: var(--accent-dark); }
+
+  /* Funnel */
+  .funnel { display: grid; gap: 6px; justify-items: center; }
+  .funnel-step { height: 34px; border-radius: 6px; background: var(--accent); color: white; text-align: center; line-height: 34px; font-size: 13px; font-weight: 500; transition: transform .15s, filter .15s; }
+  .funnel-step:hover { transform: scale(1.02); filter: brightness(1.08); }
+
+  /* Chart visual option types */
+  .pie-chart::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    background: conic-gradient(var(--blue) 0 42%, var(--orange) 42% 67%, var(--green) 67% 100%);
+  }
+
+  .line-chart { background: linear-gradient(to bottom, #fff, #FDF0EA); }
+  .scatter-chart { background: linear-gradient(to bottom, #fff, #F9F8F6); }
+
+  .scatter-chart::before, .scatter-chart::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--blue);
+  }
+
+  .scatter-chart::before {
+    left: 9px;
+    bottom: 10px;
+    box-shadow: 10px -9px 0 var(--orange), 24px -3px 0 var(--green), 36px -18px 0 var(--blue);
+  }
+
+  .radar-chart svg polygon { fill: rgba(0,152,70,.18); stroke: var(--accent); stroke-width: 2.5; }
+
+  .histogram-chart { display: flex; align-items: flex-end; gap: 4px; padding: 7px 8px; }
+  .histogram-chart span { display: block; width: 8px; border-radius: 3px 3px 0 0; }
+  .histogram-chart span:nth-child(1) { height: 18px; background: #CDEBD5; }
+  .histogram-chart span:nth-child(2) { height: 28px; background: var(--accent); }
+  .histogram-chart span:nth-child(3) { height: 14px; background: var(--orange); }
+  .histogram-chart span:nth-child(4) { height: 23px; background: var(--green); }
+
+  /* Navigation */
+  .quiz-nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .progress-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  .nav-actions { display: grid; }
+  .nav-actions button { grid-area: 1/1; }
+
+  /* Result screen */
+  .result-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+
+  .result-screen.fade-in { opacity: 1; }
+  .result-screen[hidden] { display: none; }
+
+  .result-screen-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transform: translateY(16px);
+    transition: transform .4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .result-screen.fade-in .result-screen-inner { transform: translateY(0); }
+
+  .result-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 4px;
+    letter-spacing: -1px;
+  }
+
+  .result-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.4px;
+  }
+
+  .result-meta {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 4px;
+  }
+
+  .result-score-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 8px 0;
+  }
+
+  .ring-svg { width: 100%; height: 100%; }
+
+  .ring-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring-score {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .ring-total {
+    font-size: 13px;
+    color: var(--text-3);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .result-level-tag {
+    padding: 5px 16px;
+    border-radius: 999px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid #CDEBD5;
+    margin-bottom: 4px;
+  }
+
+  .result-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .breakdown-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+  }
+
+  .breakdown-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .breakdown-label {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+
+
+  .save-status {
+    min-height: 20px;
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+
+  .save-status strong { color: var(--accent-dark); }
+
+  .quiz-area[hidden] { display: none; }
+
+  @media (max-width: 600px) {
+    .student-grid { grid-template-columns: 1fr; }
+    .student-info { padding: 18px; }
+    .options-visual { grid-template-columns: repeat(2, 1fr); }
+    .quiz-nav { grid-template-columns: auto 1fr auto; gap: 8px; }
+    .bars { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <header class="page-header">
+    <h1>Data Analyst Fresher Assessment</h1>
+    <p><span id="questionCount"></span> questions &nbsp;·&nbsp; <span class="badge">Auto-scored</span></p>
+  </header>
+
+  <section class="student-info" aria-label="Student information">
+    <div class="section-label">Your information</div>
+    <div class="student-grid">
+      <div class="field">
+        <span class="field-label">Full name</span>
+        <input type="text" id="studentName" name="studentName" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <span class="field-label">Email address</span>
+        <input type="email" id="studentEmail" name="studentEmail" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <span class="field-label">Class</span>
+        <input type="text" id="studentClass" name="studentClass" placeholder="Your class" required>
+      </div>
+    </div>
+    <div class="start-actions">
+      <button type="button" class="btn btn-primary" onclick="startQuiz()">Start Assessment →</button>
+    </div>
+  </section>
+
+  <form id="quiz" class="quiz-area" hidden>
+
+    <div class="progress-area">
+      <div class="progress-meta">
+        <span id="progress" class="progress-label"></span>
+        <span id="progressPct" style="font-size:12px;color:var(--text-3)"></span>
+      </div>
+      <div class="progress-track">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">1</span>
+        <span class="q-text">Best chart for revenue trend by month? <span class="points">1 pt</span></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-bottom:18px">
+        <table class="data-table" aria-label="Revenue Jan–Jun 2025" style="margin:0">
+          <thead><tr><th>Month</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Jan</td><td>$42,000</td></tr>
+            <tr><td>Feb</td><td>$45,500</td></tr>
+            <tr><td>Mar</td><td>$48,200</td></tr>
+            <tr><td>Apr</td><td>$46,800</td></tr>
+            <tr><td>May</td><td>$52,400</td></tr>
+            <tr><td>Jun</td><td>$57,100</td></tr>
+          </tbody>
+        </table>
+        <table class="data-table" aria-label="Revenue Jul–Dec 2025" style="margin:0">
+          <thead><tr><th>Month</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Jul</td><td>$60,300</td></tr>
+            <tr><td>Aug</td><td>$63,900</td></tr>
+            <tr><td>Sep</td><td>$61,700</td></tr>
+            <tr><td>Oct</td><td>$66,500</td></tr>
+            <tr><td>Nov</td><td>$71,200</td></tr>
+            <tr><td>Dec</td><td>$78,600</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="options-visual">
+        <label class="answer-card">
+          <input type="checkbox" name="q1" value="0">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="20" fill="none" stroke="#E8E5E0" stroke-width="1"/>
+              <path d="M40,28 L40,8 A20,20 0 0,1 57.3,38 Z" fill="#009846"/>
+              <path d="M40,28 L57.3,38 A20,20 0 0,1 25.4,46.9 Z" fill="#CDEBD5"/>
+              <path d="M40,28 L25.4,46.9 A20,20 0 0,1 22.7,17.9 Z" fill="#64C987"/>
+              <path d="M40,28 L22.7,17.9 A20,20 0 0,1 40,8 Z" fill="#006B35"/>
+              <circle cx="40" cy="28" r="9" fill="white"/>
+            </svg>
+          </span>
+          <span class="option-text">Pie</span>
+        </label>
+        <label class="answer-card">
+          <input type="checkbox" name="q1" value="1">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10" y1="46" x2="72" y2="46" stroke="#E8E5E0" stroke-width="1.5"/>
+              <line x1="10" y1="46" x2="10" y2="10" stroke="#E8E5E0" stroke-width="1.5"/>
+              <polyline points="12,40 24,34 36,36 50,22 64,10" fill="none" stroke="#009846" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="40" r="3" fill="#009846"/>
+              <circle cx="24" cy="34" r="3" fill="#009846"/>
+              <circle cx="36" cy="36" r="3" fill="#009846"/>
+              <circle cx="50" cy="22" r="3" fill="#009846"/>
+              <circle cx="64" cy="10" r="3" fill="#009846"/>
+              <polyline points="12,40 24,34 36,36 50,22 64,10" fill="rgba(0,152,70,.1)" stroke="none"/>
+              <polygon points="12,40 24,34 36,36 50,22 64,10 64,46 12,46" fill="rgba(0,152,70,.08)"/>
+            </svg>
+          </span>
+          <span class="option-text">Line</span>
+        </label>
+        <label class="answer-card">
+          <input type="checkbox" name="q1" value="0">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10" y1="46" x2="72" y2="46" stroke="#E8E5E0" stroke-width="1.5"/>
+              <line x1="10" y1="46" x2="10" y2="10" stroke="#E8E5E0" stroke-width="1.5"/>
+              <circle cx="18" cy="42" r="3.5" fill="#009846" opacity=".7"/>
+              <circle cx="26" cy="36" r="3.5" fill="#006B35" opacity=".8"/>
+              <circle cx="34" cy="30" r="3.5" fill="#009846"/>
+              <circle cx="38" cy="38" r="3.5" fill="#64C987" opacity=".9"/>
+              <circle cx="46" cy="22" r="3.5" fill="#009846" opacity=".85"/>
+              <circle cx="52" cy="28" r="3.5" fill="#006B35" opacity=".7"/>
+              <circle cx="58" cy="18" r="3.5" fill="#009846"/>
+              <circle cx="64" cy="14" r="3.5" fill="#64C987"/>
+              <circle cx="30" cy="44" r="3.5" fill="#CDEBD5"/>
+              <circle cx="42" cy="32" r="3.5" fill="#006B35" opacity=".6"/>
+            </svg>
+          </span>
+          <span class="option-text">Scatter</span>
+        </label>
+        <label class="answer-card">
+          <input type="checkbox" name="q1" value="0">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <line x1="40" y1="6" x2="40" y2="50" stroke="#E8E5E0" stroke-width="1"/>
+              <line x1="40" y1="28" x2="68" y2="42" stroke="#E8E5E0" stroke-width="1"/>
+              <line x1="40" y1="28" x2="12" y2="42" stroke="#E8E5E0" stroke-width="1"/>
+              <line x1="40" y1="28" x2="12" y2="14" stroke="#E8E5E0" stroke-width="1"/>
+              <line x1="40" y1="28" x2="68" y2="14" stroke="#E8E5E0" stroke-width="1"/>
+              <polygon points="40,10 62,38 24,50 16,20 64,20 18,38" fill="rgba(0,152,70,.15)" stroke="#009846" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="40" cy="6" r="2.5" fill="#E8E5E0"/>
+              <circle cx="68" cy="42" r="2.5" fill="#E8E5E0"/>
+              <circle cx="12" cy="42" r="2.5" fill="#E8E5E0"/>
+              <circle cx="12" cy="14" r="2.5" fill="#E8E5E0"/>
+              <circle cx="68" cy="14" r="2.5" fill="#E8E5E0"/>
+              <circle cx="40" cy="10" r="3" fill="#009846"/>
+              <circle cx="62" cy="38" r="3" fill="#009846"/>
+              <circle cx="24" cy="50" r="3" fill="#009846"/>
+              <circle cx="16" cy="20" r="3" fill="#009846"/>
+              <circle cx="64" cy="20" r="3" fill="#009846"/>
+              <circle cx="18" cy="38" r="3" fill="#009846"/>
+            </svg>
+          </span>
+          <span class="option-text">Radar</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">2</span>
+        <span class="q-text">Best chart for product category share? <span class="points">1 pt</span></span>
+      </div>
+      <table class="data-table" aria-label="Product category share in 2025">
+        <thead><tr><th>Category</th><th>Share</th></tr></thead>
+        <tbody>
+          <tr><td>Electronics</td><td>38%</td></tr>
+          <tr><td>Fashion</td><td>24%</td></tr>
+          <tr><td>Home</td><td>18%</td></tr>
+          <tr><td>Beauty</td><td>12%</td></tr>
+          <tr><td>Sports</td><td>8%</td></tr>
+        </tbody>
+      </table>
+      <div class="options-visual">
+        <label class="answer-card">
+          <input type="checkbox" name="q2" value="1">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="20" fill="none" stroke="#E8E5E0" stroke-width="1"/>
+              <path d="M40,28 L40,8 A20,20 0 0,1 57.3,38 Z" fill="#009846"/>
+              <path d="M40,28 L57.3,38 A20,20 0 0,1 25.4,46.9 Z" fill="#CDEBD5"/>
+              <path d="M40,28 L25.4,46.9 A20,20 0 0,1 22.7,17.9 Z" fill="#64C987"/>
+              <path d="M40,28 L22.7,17.9 A20,20 0 0,1 40,8 Z" fill="#006B35"/>
+              <circle cx="40" cy="28" r="9" fill="white"/>
+            </svg>
+          </span>
+          <span class="option-text">Pie</span>
+        </label>
+        <label class="answer-card">
+          <input type="checkbox" name="q2" value="0">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10" y1="46" x2="72" y2="46" stroke="#E8E5E0" stroke-width="1.5"/>
+              <line x1="10" y1="46" x2="10" y2="10" stroke="#E8E5E0" stroke-width="1.5"/>
+              <polyline points="12,36 24,22 36,30 50,14 64,24" fill="none" stroke="#009846" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="36" r="3" fill="#009846"/>
+              <circle cx="24" cy="22" r="3" fill="#009846"/>
+              <circle cx="36" cy="30" r="3" fill="#009846"/>
+              <circle cx="50" cy="14" r="3" fill="#009846"/>
+              <circle cx="64" cy="24" r="3" fill="#009846"/>
+              <polygon points="12,36 24,22 36,30 50,14 64,24 64,46 12,46" fill="rgba(0,152,70,.08)"/>
+            </svg>
+          </span>
+          <span class="option-text">Line</span>
+        </label>
+        <label class="answer-card">
+          <input type="checkbox" name="q2" value="0">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10" y1="46" x2="72" y2="46" stroke="#E8E5E0" stroke-width="1.5"/>
+              <line x1="10" y1="46" x2="10" y2="10" stroke="#E8E5E0" stroke-width="1.5"/>
+              <circle cx="18" cy="42" r="3.5" fill="#009846" opacity=".7"/>
+              <circle cx="26" cy="36" r="3.5" fill="#006B35" opacity=".8"/>
+              <circle cx="34" cy="30" r="3.5" fill="#009846"/>
+              <circle cx="38" cy="38" r="3.5" fill="#64C987" opacity=".9"/>
+              <circle cx="46" cy="22" r="3.5" fill="#009846" opacity=".85"/>
+              <circle cx="52" cy="28" r="3.5" fill="#006B35" opacity=".7"/>
+              <circle cx="58" cy="18" r="3.5" fill="#009846"/>
+              <circle cx="64" cy="14" r="3.5" fill="#64C987"/>
+              <circle cx="30" cy="44" r="3.5" fill="#CDEBD5"/>
+              <circle cx="42" cy="32" r="3.5" fill="#006B35" opacity=".6"/>
+            </svg>
+          </span>
+          <span class="option-text">Scatter</span>
+        </label>
+        <label class="answer-card">
+          <input type="checkbox" name="q2" value="0">
+          <span class="option-visual" aria-hidden="true">
+            <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10" y1="46" x2="72" y2="46" stroke="#E8E5E0" stroke-width="1.5"/>
+              <line x1="10" y1="46" x2="10" y2="10" stroke="#E8E5E0" stroke-width="1.5"/>
+              <rect x="15" y="30" width="10" height="16" rx="2" fill="#CDEBD5"/>
+              <rect x="28" y="16" width="10" height="30" rx="2" fill="#009846"/>
+              <rect x="41" y="22" width="10" height="24" rx="2" fill="#64C987"/>
+              <rect x="54" y="10" width="10" height="36" rx="2" fill="#006B35"/>
+            </svg>
+          </span>
+          <span class="option-text">Histogram</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">3</span>
+        <span class="q-text">Given the table below, what does this query return? <span class="points">1 pt</span></span>
+      </div>
+      <table class="data-table" aria-label="Orders sample data">
+        <thead><tr><th>order_id</th><th>customer_id</th></tr></thead>
+        <tbody>
+          <tr><td>1001</td><td>C001</td></tr>
+          <tr><td>1002</td><td>C002</td></tr>
+          <tr><td>1003</td><td>NULL</td></tr>
+          <tr><td>1004</td><td>C004</td></tr>
+          <tr><td>1005</td><td>NULL</td></tr>
+        </tbody>
+      </table>
+      <pre><code>SELECT
+    COUNT(*) AS total_rows,
+    COUNT(customer_id) AS total_customer
+FROM orders;</code></pre>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q3" value="1"> total_rows = 5, total_customer = 3</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="0"> total_rows = 3, total_customer = 5</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="0"> total_rows = 5, total_customer = 5</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="0"> total_rows = 2, total_customer = 3</label>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">4</span>
+        <span class="q-text">The orders table has 20 million rows and 50 columns. You only need order_id, order_date, and amount. Which query should you use? <span class="points">1 pt</span></span>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q4" value="0"> SELECT * FROM orders;</label>
+        <label class="option-label"><input type="checkbox" name="q4" value="1"> SELECT order_id, order_date, amount FROM orders;</label>
+        <label class="option-label"><input type="checkbox" name="q4" value="0"> SELECT order_id FROM orders;</label>
+        <label class="option-label"><input type="checkbox" name="q4" value="0"> SELECT COUNT(*) FROM orders;</label>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">5</span>
+        <span class="q-text">Look at the store revenue chart below. If all stores grow by 30% next month, what is the new total revenue? <span class="points">1 pt</span></span>
+      </div>
+      <div class="bar-chart" role="img" aria-label="Store revenue: A=100, B=200, C=300, D=400">
+        <h3>Store Revenue</h3>
+        <p>Monthly revenue by store.</p>
+        <div class="bars">
+          <div class="bar-item" style="--bar-height:40px" data-value="100"><div class="bar" style="height:40px"></div><span class="bar-label">A</span></div>
+          <div class="bar-item" style="--bar-height:80px" data-value="200"><div class="bar" style="height:80px"></div><span class="bar-label">B</span></div>
+          <div class="bar-item" style="--bar-height:120px" data-value="300"><div class="bar" style="height:120px"></div><span class="bar-label">C</span></div>
+          <div class="bar-item" style="--bar-height:160px" data-value="400"><div class="bar" style="height:160px"></div><span class="bar-label">D</span></div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q5" value="0"> 1,000</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="0"> 1,100</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="1"> 1,300</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="0"> 1,400</label>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">6</span>
+        <span class="q-text">Based on the store revenue chart, which store has the highest revenue? <span class="points">1 pt</span></span>
+      </div>
+      <div class="bar-chart" role="img" aria-label="Store revenue: A=100, B=200, C=300, D=400">
+        <h3>Store Revenue</h3>
+        <p>Monthly revenue by store.</p>
+        <div class="bars">
+          <div class="bar-item" style="--bar-height:40px" data-value="100"><div class="bar" style="height:40px"></div><span class="bar-label">A</span></div>
+          <div class="bar-item" style="--bar-height:80px" data-value="200"><div class="bar" style="height:80px"></div><span class="bar-label">B</span></div>
+          <div class="bar-item" style="--bar-height:120px" data-value="300"><div class="bar" style="height:120px"></div><span class="bar-label">C</span></div>
+          <div class="bar-item" style="--bar-height:160px" data-value="400"><div class="bar" style="height:160px"></div><span class="bar-label">D</span></div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q6" value="0"> Store A</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="0"> Store B</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="0"> Store C</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="1"> Store D</label>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">7</span>
+        <span class="q-text">Based on the chart, how much higher is Store D revenue than Store B? <span class="points">1 pt</span></span>
+      </div>
+      <div class="bar-chart" role="img" aria-label="Store revenue: A=100, B=200, C=300, D=400">
+        <h3>Store Revenue</h3>
+        <p>Monthly revenue by store.</p>
+        <div class="bars">
+          <div class="bar-item" style="--bar-height:40px" data-value="100"><div class="bar" style="height:40px"></div><span class="bar-label">A</span></div>
+          <div class="bar-item" style="--bar-height:80px" data-value="200"><div class="bar" style="height:80px"></div><span class="bar-label">B</span></div>
+          <div class="bar-item" style="--bar-height:120px" data-value="300"><div class="bar" style="height:120px"></div><span class="bar-label">C</span></div>
+          <div class="bar-item" style="--bar-height:160px" data-value="400"><div class="bar" style="height:160px"></div><span class="bar-label">D</span></div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q7" value="0"> 100</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="1"> 200</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="0"> 300</label>
+        <label class="option-label"><input type="checkbox" name="q7" value="0"> 400</label>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">8</span>
+        <span class="q-text">Store A and Store B together account for what percentage of total revenue? <span class="points">1 pt</span></span>
+      </div>
+      <div class="bar-chart" role="img" aria-label="Store revenue: A=100, B=200, C=300, D=400">
+        <h3>Store Revenue</h3>
+        <p>Monthly revenue by store.</p>
+        <div class="bars">
+          <div class="bar-item" style="--bar-height:40px" data-value="100"><div class="bar" style="height:40px"></div><span class="bar-label">A</span></div>
+          <div class="bar-item" style="--bar-height:80px" data-value="200"><div class="bar" style="height:80px"></div><span class="bar-label">B</span></div>
+          <div class="bar-item" style="--bar-height:120px" data-value="300"><div class="bar" style="height:120px"></div><span class="bar-label">C</span></div>
+          <div class="bar-item" style="--bar-height:160px" data-value="400"><div class="bar" style="height:160px"></div><span class="bar-label">D</span></div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q8" value="0"> 20%</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="1"> 30%</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="0"> 40%</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="0"> 50%</label>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">9</span>
+        <span class="q-text">Based on the channel share donut chart, which channel contributes the largest share? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Sales by Channel</h3>
+        <p>Share of total sales.</p>
+        <div class="donut-wrap">
+          <div class="donut" aria-hidden="true"></div>
+          <div class="legend">
+            <span style="--color:#2563EB">Online — 45%</span>
+            <span style="--color:#F97316">Retail — 30%</span>
+            <span style="--color:#22C55E">Partner — 25%</span>
+          </div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q9" value="1"> Online</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="0"> Retail</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="0"> Partner</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="0"> All channels are equal</label>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">10</span>
+        <span class="q-text">The line chart shows monthly return rate. What is the main pattern? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Return Rate</h3>
+        <p>Jan to Jun 2025.</p>
+        <svg class="svg-chart" viewBox="0 0 560 190" role="img" aria-label="Return rate increases from 2% to 8%">
+          <line x1="36" y1="20" x2="36" y2="154" stroke="#E8E5E0"></line>
+          <line x1="36" y1="154" x2="530" y2="154" stroke="#E8E5E0"></line>
+          <polyline points="44,132 130,126 216,112 302,92 388,66 474,38" fill="none" stroke="#009846" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <circle cx="44" cy="132" r="5" fill="#009846"></circle>
+          <circle cx="130" cy="126" r="5" fill="#009846"></circle>
+          <circle cx="216" cy="112" r="5" fill="#009846"></circle>
+          <circle cx="302" cy="92" r="5" fill="#009846"></circle>
+          <circle cx="388" cy="66" r="5" fill="#009846"></circle>
+          <circle cx="474" cy="38" r="5" fill="#009846"></circle>
+          <text x="42" y="176" font-size="12" fill="#9B9390">Jan</text>
+          <text x="472" y="176" font-size="12" fill="#9B9390">Jun</text>
+        </svg>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q10" value="0"> Return rate is stable</label>
+        <label class="option-label"><input type="checkbox" name="q10" value="1"> Return rate is increasing</label>
+        <label class="option-label"><input type="checkbox" name="q10" value="0"> Return rate is decreasing</label>
+        <label class="option-label"><input type="checkbox" name="q10" value="0"> Return rate is zero</label>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">11</span>
+        <span class="q-text">In the stacked bar chart, what is the total sales in Q4? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Sales by Device</h3>
+        <p>Mobile and desktop by quarter.</p>
+        <div class="stacked-row"><span class="stacked-label">Q1</span><div class="stacked-bar"><span class="seg-mobile" style="width:45%"></span><span class="seg-desktop" style="width:35%"></span></div><strong>80</strong></div>
+        <div class="stacked-row"><span class="stacked-label">Q2</span><div class="stacked-bar"><span class="seg-mobile" style="width:50%"></span><span class="seg-desktop" style="width:40%"></span></div><strong>90</strong></div>
+        <div class="stacked-row"><span class="stacked-label">Q3</span><div class="stacked-bar"><span class="seg-mobile" style="width:58%"></span><span class="seg-desktop" style="width:42%"></span></div><strong>100</strong></div>
+        <div class="stacked-row"><span class="stacked-label">Q4</span><div class="stacked-bar"><span class="seg-mobile" style="width:70%"></span><span class="seg-desktop" style="width:50%"></span></div><strong>120</strong></div>
+        <div class="legend" style="margin-top:10px">
+          <span style="--color:#2563EB">Mobile</span>
+          <span style="--color:#F97316">Desktop</span>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q11" value="0"> 80</label>
+        <label class="option-label"><input type="checkbox" name="q11" value="0"> 90</label>
+        <label class="option-label"><input type="checkbox" name="q11" value="0"> 100</label>
+        <label class="option-label"><input type="checkbox" name="q11" value="1"> 120</label>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">12</span>
+        <span class="q-text">Which support topic has the lowest satisfaction score? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Customer Satisfaction</h3>
+        <p>Average score by support topic.</p>
+        <div class="hbar-row"><span>Delivery</span><div class="hbar"><span style="width:88%"></span></div><strong>88</strong></div>
+        <div class="hbar-row"><span>Payment</span><div class="hbar"><span style="width:72%"></span></div><strong>72</strong></div>
+        <div class="hbar-row"><span>Return</span><div class="hbar"><span style="width:54%"></span></div><strong>54</strong></div>
+        <div class="hbar-row"><span>Product</span><div class="hbar"><span style="width:81%"></span></div><strong>81</strong></div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q12" value="0"> Delivery</label>
+        <label class="option-label"><input type="checkbox" name="q12" value="0"> Payment</label>
+        <label class="option-label"><input type="checkbox" name="q12" value="1"> Return</label>
+        <label class="option-label"><input type="checkbox" name="q12" value="0"> Product</label>
+      </div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">13</span>
+        <span class="q-text">In the heatmap, which day and time slot has the highest number of orders? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Orders Heatmap</h3>
+        <p>Orders by day and time slot.</p>
+        <div class="heatmap">
+          <div></div><div class="head">Morning</div><div class="head">Noon</div><div class="head">Evening</div><div class="head">Night</div>
+          <div class="head">Mon</div><div class="mild">32</div><div class="warm">48</div><div class="mild">39</div><div>20</div>
+          <div class="head">Tue</div><div>28</div><div class="mild">35</div><div class="warm">56</div><div>22</div>
+          <div class="head">Wed</div><div class="mild">34</div><div class="warm">52</div><div class="hot">75</div><div class="mild">31</div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q13" value="0"> Mon Noon</label>
+        <label class="option-label"><input type="checkbox" name="q13" value="0"> Tue Evening</label>
+        <label class="option-label"><input type="checkbox" name="q13" value="1"> Wed Evening</label>
+        <label class="option-label"><input type="checkbox" name="q13" value="0"> Wed Night</label>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">14</span>
+        <span class="q-text">Based on the funnel chart, what is the conversion rate from visits to purchases? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Checkout Funnel</h3>
+        <p>Users by step.</p>
+        <div class="funnel">
+          <div class="funnel-step" style="width:100%">Visits: 1,000</div>
+          <div class="funnel-step" style="width:72%">Product views: 720</div>
+          <div class="funnel-step" style="width:45%">Cart adds: 450</div>
+          <div class="funnel-step" style="width:25%">Purchases: 250</div>
+        </div>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q14" value="0"> 10%</label>
+        <label class="option-label"><input type="checkbox" name="q14" value="1"> 25%</label>
+        <label class="option-label"><input type="checkbox" name="q14" value="0"> 45%</label>
+        <label class="option-label"><input type="checkbox" name="q14" value="0"> 72%</label>
+      </div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">15</span>
+        <span class="q-text">In data analysis, what is a KPI mainly used for? <span class="points">1 pt</span></span>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q15" value="0"> To store raw data in a database</label>
+        <label class="option-label"><input type="checkbox" name="q15" value="1"> To measure performance against a business goal</label>
+        <label class="option-label"><input type="checkbox" name="q15" value="0"> To change the visual color of a dashboard</label>
+        <label class="option-label"><input type="checkbox" name="q15" value="0"> To remove duplicate rows automatically</label>
+      </div>
+    </div>
+
+    <!-- Shared context panel for Q16–Q20 -->
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">16</span>
+        <span class="q-text">Use the context below. What is the net customer growth in January? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Growth Campaign Context</h3>
+        <p>January 2025 — subscription business metrics.</p>
+        <table class="data-table" aria-label="Growth campaign metrics">
+          <tbody>
+            <tr><td>Customers at start of month</td><td>10,000</td></tr>
+            <tr><td>New customers</td><td>1,200</td></tr>
+            <tr><td>Churned customers</td><td>800</td></tr>
+            <tr><td>Monthly revenue</td><td>$500,000</td></tr>
+            <tr><td>Acquisition spend</td><td>$60,000</td></tr>
+            <tr><td>Campaign cost</td><td>$40,000</td></tr>
+            <tr><td>Incremental revenue from campaign</td><td>$60,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q16" value="0"> 200</label>
+        <label class="option-label"><input type="checkbox" name="q16" value="1"> 400</label>
+        <label class="option-label"><input type="checkbox" name="q16" value="0"> 800</label>
+        <label class="option-label"><input type="checkbox" name="q16" value="0"> 1,200</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">17</span>
+        <span class="q-text">Use the same context. What is the churn rate in January? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Growth Campaign Context</h3>
+        <p>January 2025 — subscription business metrics.</p>
+        <table class="data-table" aria-label="Growth campaign metrics">
+          <tbody>
+            <tr><td>Customers at start of month</td><td>10,000</td></tr>
+            <tr><td>New customers</td><td>1,200</td></tr>
+            <tr><td>Churned customers</td><td>800</td></tr>
+            <tr><td>Monthly revenue</td><td>$500,000</td></tr>
+            <tr><td>Acquisition spend</td><td>$60,000</td></tr>
+            <tr><td>Campaign cost</td><td>$40,000</td></tr>
+            <tr><td>Incremental revenue from campaign</td><td>$60,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q17" value="0"> 4%</label>
+        <label class="option-label"><input type="checkbox" name="q17" value="1"> 8%</label>
+        <label class="option-label"><input type="checkbox" name="q17" value="0"> 12%</label>
+        <label class="option-label"><input type="checkbox" name="q17" value="0"> 20%</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">18</span>
+        <span class="q-text">Use the same context. What is the customer acquisition cost per new customer? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Growth Campaign Context</h3>
+        <p>January 2025 — subscription business metrics.</p>
+        <table class="data-table" aria-label="Growth campaign metrics">
+          <tbody>
+            <tr><td>Customers at start of month</td><td>10,000</td></tr>
+            <tr><td>New customers</td><td>1,200</td></tr>
+            <tr><td>Churned customers</td><td>800</td></tr>
+            <tr><td>Monthly revenue</td><td>$500,000</td></tr>
+            <tr><td>Acquisition spend</td><td>$60,000</td></tr>
+            <tr><td>Campaign cost</td><td>$40,000</td></tr>
+            <tr><td>Incremental revenue from campaign</td><td>$60,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q18" value="0"> $40</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="1"> $50</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="0"> $60</label>
+        <label class="option-label"><input type="checkbox" name="q18" value="0"> $75</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">19</span>
+        <span class="q-text">Use the same context. If end-of-month customers are 10,400, what is the approximate ARPU? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Growth Campaign Context</h3>
+        <p>January 2025 — subscription business metrics.</p>
+        <table class="data-table" aria-label="Growth campaign metrics">
+          <tbody>
+            <tr><td>Customers at start of month</td><td>10,000</td></tr>
+            <tr><td>New customers</td><td>1,200</td></tr>
+            <tr><td>Churned customers</td><td>800</td></tr>
+            <tr><td>Monthly revenue</td><td>$500,000</td></tr>
+            <tr><td>Acquisition spend</td><td>$60,000</td></tr>
+            <tr><td>Campaign cost</td><td>$40,000</td></tr>
+            <tr><td>Incremental revenue from campaign</td><td>$60,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q19" value="1"> About $48</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="0"> About $60</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="0"> About $104</label>
+        <label class="option-label"><input type="checkbox" name="q19" value="0"> About $500</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="question-header">
+        <span class="q-number">20</span>
+        <span class="q-text">Use the same context. What is the campaign ROI? <span class="points">1 pt</span></span>
+      </div>
+      <div class="chart-panel">
+        <h3>Growth Campaign Context</h3>
+        <p>January 2025 — subscription business metrics.</p>
+        <table class="data-table" aria-label="Growth campaign metrics">
+          <tbody>
+            <tr><td>Customers at start of month</td><td>10,000</td></tr>
+            <tr><td>New customers</td><td>1,200</td></tr>
+            <tr><td>Churned customers</td><td>800</td></tr>
+            <tr><td>Monthly revenue</td><td>$500,000</td></tr>
+            <tr><td>Acquisition spend</td><td>$60,000</td></tr>
+            <tr><td>Campaign cost</td><td>$40,000</td></tr>
+            <tr><td>Incremental revenue from campaign</td><td>$60,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="options-list">
+        <label class="option-label"><input type="checkbox" name="q20" value="0"> 25%</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="1"> 50%</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="0"> 100%</label>
+        <label class="option-label"><input type="checkbox" name="q20" value="0"> 150%</label>
+      </div>
+    </div>
+
+    <div class="quiz-nav">
+      <button type="button" id="prevBtn" class="btn btn-ghost" onclick="prevQuestion()">← Previous</button>
+      <span id="progress" class="progress-label"></span>
+      <span class="nav-actions">
+        <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next →</button>
+        <button type="button" id="submitBtn" class="btn btn-primary" onclick="submitQuiz()">Submit</button>
+      </span>
+    </div>
+  </form>
+
+  <div id="resultScreen" class="result-screen" hidden>
+    <div class="result-screen-inner">
+      <div class="result-avatar" id="resultAvatar"></div>
+      <div class="result-name" id="resultName"></div>
+      <div class="result-meta" id="resultMeta"></div>
+      <div class="result-score-ring">
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#E8E5E0" stroke-width="8"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#009846" stroke-width="8"
+            stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314"
+            id="ringCircle" style="transform:rotate(-90deg);transform-origin:60px 60px;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)"/>
+        </svg>
+        <div class="ring-label">
+          <div class="ring-score" id="ringScore">0</div>
+          <div class="ring-total">/ 100</div>
+        </div>
+      </div>
+      <div class="result-level-tag" id="resultLevel"></div>
+      <div class="save-status" id="saveStatus"></div>
+      <div class="result-breakdown" id="resultBreakdown"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /*******************************************************
+   * GOOGLE SHEET CONNECTION
+   * NOTE CHỖ CẦN DÁN GOOGLE SHEET:
+   * 1) Không dán Google Sheet ID trực tiếp vào file HTML này.
+   * 2) Dán Web App URL sau khi Deploy Google Apps Script vào GOOGLE_SCRIPT_URL bên dưới.
+   * Ví dụ: const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycb.../exec";
+   *******************************************************/
+  const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  let currentQuestion = 0;
+  const questions = Array.from(document.querySelectorAll(".card"));
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const submitBtn = document.getElementById("submitBtn");
+  const progressEl = document.getElementById("progress");
+  const progressFill = document.getElementById("progressFill");
+
+  document.getElementById("questionCount").textContent = questions.length;
+
+  function validateStudentInfo() {
+    const name = document.getElementById("studentName");
+    const email = document.getElementById("studentEmail");
+    const cls = document.getElementById("studentClass");
+    if (!name.value.trim() || !email.value.trim() || !cls.value.trim()) {
+      alert("Please enter your name, email, and class before starting.");
+      if (!name.value.trim()) name.focus();
+      else if (!email.value.trim()) email.focus();
+      else cls.focus();
+      return false;
+    }
+    return true;
+  }
+
+  function startQuiz() {
+    if (!validateStudentInfo()) return;
+    document.getElementById("quiz").hidden = false;
+    document.querySelector(".student-info").hidden = true;
+    showQuestion(0);
+  }
+
+  questions.forEach(q => {
+    q.addEventListener("change", e => {
+      if (e.target.type !== "checkbox") return;
+      const checked = q.querySelectorAll('input[type="checkbox"]:checked');
+      if (checked.length > 2) e.target.checked = false;
+    });
+  });
+
+  function showQuestion(index) {
+    questions.forEach((q, i) => { q.hidden = i !== index; });
+    prevBtn.disabled = index === 0;
+    nextBtn.style.visibility = index === questions.length - 1 ? "hidden" : "visible";
+    submitBtn.style.visibility = index === questions.length - 1 ? "visible" : "hidden";
+    progressEl.textContent = "Question " + (index + 1) + " of " + questions.length;
+    const pct = Math.round(((index + 1) / questions.length) * 100);
+    progressFill.style.width = pct + "%";
+  }
+
+  function nextQuestion() {
+    if (currentQuestion < questions.length - 1) { currentQuestion++; showQuestion(currentQuestion); }
+  }
+
+  function prevQuestion() {
+    if (currentQuestion > 0) { currentQuestion--; showQuestion(currentQuestion); }
+  }
+
+  function submitQuiz() {
+    if (!validateStudentInfo()) return;
+    const name = document.getElementById("studentName").value.trim();
+    const email = document.getElementById("studentEmail").value.trim();
+    const cls = document.getElementById("studentClass").value.trim();
+
+    let correct = 0;
+    const answers = [];
+    questions.forEach((q, index) => {
+      let qScore = 0;
+      const selected = Array.from(q.querySelectorAll('input[type="checkbox"]:checked')).map(input => {
+        qScore += parseInt(input.value, 10);
+        return input.parentElement.textContent.trim().replace(/\s+/g, " ");
+      });
+      const point = Math.min(qScore, 1);
+      correct += point;
+      answers.push({
+        question: index + 1,
+        selected: selected.join(" | "),
+        isCorrect: point === 1
+      });
+    });
+    const score = Math.round(correct * (100 / questions.length));
+    const wrong = questions.length - correct;
+    const level = score <= 40 ? "Intern" : score <= 60 ? "Fresher" : score <= 80 ? "Junior Data Analyst" : "Strong Junior";
+
+    const initials = name.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+    document.getElementById("resultAvatar").textContent = initials;
+    document.getElementById("resultName").textContent = name;
+    document.getElementById("resultMeta").textContent = email + " · " + cls;
+    document.getElementById("resultLevel").textContent = level;
+    document.getElementById("resultBreakdown").innerHTML = `
+      <div class="breakdown-item"><div class="breakdown-num">${correct}</div><div class="breakdown-label">Correct</div></div>
+      <div class="breakdown-item"><div class="breakdown-num">${wrong}</div><div class="breakdown-label">Incorrect</div></div>
+      <div class="breakdown-item"><div class="breakdown-num">${score}</div><div class="breakdown-label">Score</div></div>`;
+
+    const resultData = {
+      name,
+      email,
+      className: cls,
+      score,
+      level,
+      correct,
+      wrong,
+      totalQuestions: questions.length,
+      answers,
+      submittedAt: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+
+    saveResultToGoogleSheet(resultData);
+
+    const screen = document.getElementById("resultScreen");
+    screen.hidden = false;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        screen.classList.add("fade-in");
+        // animate score counter
+        const ringEl = document.getElementById("ringCircle");
+        const scoreEl = document.getElementById("ringScore");
+        const circumference = 314;
+        ringEl.style.strokeDashoffset = circumference - (circumference * score / 100);
+        let current = 0;
+        const step = score / 60;
+        const counter = setInterval(() => {
+          current = Math.min(current + step, score);
+          scoreEl.textContent = Math.round(current);
+          if (current >= score) clearInterval(counter);
+        }, 16);
+      });
+    });
+  }
+
+  async function saveResultToGoogleSheet(resultData) {
+    const statusEl = document.getElementById("saveStatus");
+
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")) {
+      statusEl.innerHTML = "⚠️ Chưa gắn <strong>Google Apps Script Web App URL</strong>, kết quả mới hiển thị trên web và chưa lưu vào Sheet.";
+      console.warn("Missing GOOGLE_SCRIPT_URL", resultData);
+      return;
+    }
+
+    statusEl.textContent = "Đang lưu kết quả vào Google Sheet...";
+
+    try {
+      /*
+        Dùng mode: "no-cors" để tránh lỗi CORS khi gửi dữ liệu từ website tĩnh
+        sang Google Apps Script. Request vẫn được gửi đi, nhưng trình duyệt
+        sẽ không đọc được response chi tiết.
+      */
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(resultData)
+      });
+
+      statusEl.innerHTML = "✅ Đã gửi kết quả để lưu vào <strong>Google Sheet</strong>.";
+    } catch (error) {
+      statusEl.textContent = "⚠️ Không lưu được vào Google Sheet. Vui lòng kiểm tra Web App URL hoặc quyền Deploy.";
+      console.error("Google Sheet save error:", error);
+    }
+  }
+
+
+  showQuestion(currentQuestion);
+</script>
+</body>
+</html>
