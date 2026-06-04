@@ -131,7 +131,6 @@
   }
 
   .field input {
-    width: 100%;
     padding: 9px 12px;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
@@ -366,7 +365,7 @@
   /* Options — visual chart answers */
   .options-visual {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 4px;
   }
@@ -790,7 +789,6 @@
 
   @media (max-width: 600px) {
     .student-grid { grid-template-columns: 1fr; }
-    .student-info { padding: 18px; }
     .options-visual { grid-template-columns: repeat(2, 1fr); }
     .quiz-nav { grid-template-columns: auto 1fr auto; gap: 8px; }
     .bars { gap: 12px; }
@@ -801,8 +799,8 @@
 <div class="page-wrapper">
 
   <header class="page-header">
-    <h1>Data Analyst Fresher Assessment</h1>
-    <p><span id="questionCount"></span> questions &nbsp;·&nbsp; <span class="badge">Auto-scored</span></p>
+    <h1>DUA Edu · SQL Fresher Assessment</h1>
+    <p><span id="questionCount"></span> questions &nbsp;·&nbsp; <span class="badge">Auto-scored</span> &nbsp;·&nbsp; <span class="badge">Save to Google Sheet</span></p>
   </header>
 
   <section class="student-info" aria-label="Student information">
@@ -1517,13 +1515,17 @@ FROM orders;</code></pre>
 
 <script>
   /*******************************************************
-   * GOOGLE SHEET CONNECTION
-   * NOTE CHỖ CẦN DÁN GOOGLE SHEET:
-   * 1) Không dán Google Sheet ID trực tiếp vào file HTML này.
-   * 2) Dán Web App URL sau khi Deploy Google Apps Script vào GOOGLE_SCRIPT_URL bên dưới.
-   * Ví dụ: const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycb.../exec";
+   * KẾT NỐI GOOGLE SHEET ĐỂ LƯU KẾT QUẢ BÀI TEST
+   *
+   * CHỖ CẦN DÁN LINK: GOOGLE_SCRIPT_URL BÊN DƯỚI
+   *
+   * Lưu ý: KHÔNG dán link Google Sheet vào đây.
+   * Bạn cần Deploy Google Apps Script thành Web App, sau đó copy
+   * Web App URL dạng:
+   * https://script.google.com/macros/s/AKfycb.../exec
+   * rồi dán vào GOOGLE_SCRIPT_URL.
    *******************************************************/
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwq-osdE-ku2GgqjQ47yAKfK8KgG7Ja7T4rK2fqeekYl20Q6zod-fLP7OA0N95NtVPG/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwXDYogCaqEeelyXE1QOPM0uWMddiFHAQ_0VQyWmmFg9hXK1-ksYlQS0pGuDEWTX9fD/exec";
 
   let currentQuestion = 0;
   const questions = Array.from(document.querySelectorAll(".card"));
@@ -1619,14 +1621,25 @@ FROM orders;</code></pre>
       <div class="breakdown-item"><div class="breakdown-num">${score}</div><div class="breakdown-label">Score</div></div>`;
 
     const resultData = {
+      // THÔNG TIN HIỂN THỊ TRÊN TRANG KẾT QUẢ
+      // Các field này sẽ được gửi sang Google Sheet để lưu đúng như màn hình kết quả.
+      resultInitials: initials,
       name,
       email,
       className: cls,
-      score,
-      level,
-      correct,
-      wrong,
+      resultMeta: email + " · " + cls,
+
+      // KẾT QUẢ BÀI TEST
+      score,                    // ví dụ: 20
+      scoreTotal: 100,           // ví dụ: / 100
+      scoreDisplay: score + " / 100",
+      level,                    // ví dụ: Intern
+      correct,                  // ví dụ: 4
+      incorrect: wrong,         // ví dụ: 16
+      wrong,                    // giữ lại để tương thích code cũ
       totalQuestions: questions.length,
+
+      // CHI TIẾT CÂU TRẢ LỜI
       answers,
       submittedAt: new Date().toISOString(),
       userAgent: navigator.userAgent
